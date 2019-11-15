@@ -4,14 +4,11 @@ import App from './App';
 
 const user = 'Alex';
 
-function getGreeting(user) {
-    if (user){
-        return <h1>Hello, {user}</h1>
-    } else {
-        return <h1>Hello, stranger</h1>
-    }
-}
+const element = <div className="class" tabIndex="0">
+    user
+</div>
+
 ReactDOM.render( 
-    getGreeting(user),
+    element,
     document.getElementById('root')
 );
