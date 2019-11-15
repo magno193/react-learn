@@ -2,22 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-function formatarNome(usuario){
-    return usuario.nome + ' ' + usuario.sobrenome
+const user = 'Alex';
+
+function getGreeting(user) {
+    if (user){
+        return <h1>Hello, {user}</h1>
+    } else {
+        return <h1>Hello, stranger</h1>
+    }
 }
-
-const usuario = {
-    nome: 'Alexandre',
-    sobrenome: 'Ferreira'
-}
-
-const elemento = (
-    <h1>
-        Olá, {formatarNome(usuario)}
-    </h1>
-);
-
 ReactDOM.render( 
-    elemento,
+    getGreeting(user),
     document.getElementById('root')
 );
