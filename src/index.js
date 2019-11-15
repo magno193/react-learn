@@ -1,14 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import { className } from 'postcss-selector-parser';
 
-const user = 'Alex';
-
-const element = (
-    <div>
-        <h1>Hello.</h1>
-        <h2>Good to see you here.</h2>
-    </div>
+const element = React.createElement(
+    'h1',
+    {className: 'greeting'},
+    'Hello, world!'
 )
 
 ReactDOM.render( 
