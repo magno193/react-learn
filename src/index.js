@@ -1,14 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+//import App from './App';
 
 function Welcome(props) {
     return <h1>Hello, {props.name}</h1>
 }
 
-const element = <Welcome name="Sara" />
+function App(){
+    return (
+        <div>
+            <Welcome name="Sara"/>
+            <Welcome name="Cahal"/>
+            <Welcome name="Edite"/>
+        </div>
+    );
+}
 
 ReactDOM.render(
-    element,
+    <App />,
     document.getElementById('root')
 );
