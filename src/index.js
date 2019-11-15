@@ -2,4 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const name = 'Alexandre Ferreira';
+const elemento = <h1>Olá, {name}</h1>
+
+ReactDOM.render( 
+    elemento,
+    document.getElementById('root')
+);
