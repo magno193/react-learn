@@ -4,9 +4,12 @@ import App from './App';
 
 const user = 'Alex';
 
-const element = <div className="class" tabIndex="0">
-    user
-</div>
+const element = (
+    <div>
+        <h1>Hello.</h1>
+        <h2>Good to see you here.</h2>
+    </div>
+)
 
 ReactDOM.render( 
     element,
