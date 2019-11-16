@@ -2,41 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 //import App from './App';
 
-function Comment(props) {
-    return (
-      <div className="Comment">
-        <UserInfo user={props.author} />
-        <div className="Comment-text">
-          {props.text}
-        </div>
-        <div className="Comment-date">
-          {formatDate(props.date)}
-        </div>
-      </div>
-    );
+function Clock(props){
+  return(
+    <div>
+      <h1>Hello, world.</h1>
+      <h2>It is {props.date.toLocaleTimeString()}.</h2>
+    </div>
+  );
 }
 
-function Avatar(props) {
-    return (
-      <img className="Avatar"
-        src={props.user.avatarUrl}
-        alt={props.user.name}
-      />
-    );
-}
-
-function UserInfo(props) {
-    return (
-      <div className="UserInfo">
-        <Avatar user={props.user} />
-        <div className="UserInfo-name">
-          {props.user.name}
-        </div>
-      </div>
-    );
-}
-
-ReactDOM.render(
-    <Comment />,
+function tick(){
+  ReactDOM.render(
+    <Clock date={new Date()}/>,
     document.getElementById('root')
 );
+}
+
+setInterval(tick, 1000);
