@@ -8,6 +8,25 @@ class Clock extends React.Component{
     this.state = {date: new Date()}
   }
 
+  // Ocorre sempre que DOM de Clock é renderizado pela primeira vez
+  componentDidMount(){
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000
+    );
+  }
+
+  // Ocorre sempre quando a DOM de Clock é removido
+  componentWillUnmount(){
+    clearInterval(this.timerID);
+  }
+
+  tick(){
+    this.setState({
+      date: new Date()
+    });
+  }
+
   render(){
     return (
       <div>
@@ -18,12 +37,7 @@ class Clock extends React.Component{
   }
 }
 
-function tick(){
-  ReactDOM.render(
-    <Clock />,
-    document.getElementById('root')
+ReactDOM.render(
+  <Clock />,
+  document.getElementById('root')
 );
-}
-
-// Não funciona mais
-setInterval(tick, 1000);
