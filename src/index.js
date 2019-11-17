@@ -2,31 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 //import App from './App';
 
-class Toggle extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { isToggleOn: true };
-
-  // bind é utilizado para que this funcione dentro da callback
-  this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    this.setState(state => ({
-      isToggleOn: !state.isToggleOn
-    }));
+class LogginButton extends React.Component {
+  handleClick = () => {
+    console.log('this is:', this);
   }
 
   render() {
-      return (
-        <button onClick={this.handleClick}>
-          {this.state.isToggleOn ? 'ON' : 'OFF'}
-        </button>
-      );
+    return (
+      <button onClick={this.handleClick}>
+        Clique aqui
+      </button>
+    )
   }
 }
 
 ReactDOM.render(
-  <Toggle />,
+  <LogginButton />,
   document.getElementById('root')
 );
