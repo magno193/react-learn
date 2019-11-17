@@ -2,21 +2,27 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 //import App from './App';
 
-class LogginButton extends React.Component {
-  handleClick = () => {
-    console.log('this is:', this);
-  }
+function Greeting(props) {
+  const isLoggedIn = props.isLoggedIn;
 
-  render() {
-    return (
-      <button onClick={this.handleClick}>
-        Clique aqui
-      </button>
-    )
-  }
+  if (isLoggedIn) {
+    return <UserGreeting />
+  } 
+
+  return <GuestGreeting />
 }
 
+function UserGreeting(props) {
+  return <h1>Welcome back!</h1>
+}
+
+function GuestGreeting(props) {
+  return <h1>Please, sign up.</h1>
+}
+
+// renderiza um valor diferente dependendo do valor
+// da prop isLoggedIn
 ReactDOM.render(
-  <LogginButton />,
+  <Greeting isLoggedIn={false} />,
   document.getElementById('root')
 );
