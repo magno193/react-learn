@@ -2,14 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 //import App from './App';
 
-function Page() {
-  const numbers = [1, 2, 3, 4, 5];
-  const doubled = numbers.map((number) => <li>{number * 2}</li>);
-
-  return <ul>{doubled}</ul>
+function NumbersList(props) {
+  const numbers = props.numbers;
+  const listItens = numbers.map((number) =>
+    <li key={number.toString()}>
+      {number}
+    </li>
+  );
+  return <ul>{listItens}</ul>
 }
 
+const numbers = [1, 5, 7, 23, 34]
 ReactDOM.render(
-  <Page />,
+  <NumbersList numbers={numbers}/>,
   document.getElementById('root')
 );
