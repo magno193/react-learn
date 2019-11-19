@@ -2,41 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 //import App from './App';
 
-function WarningBanner(props) {
-  if (!props.warn) {
-    return null
-  }
+function Page() {
+  const numbers = [1, 2, 3, 4, 5];
+  const doubled = numbers.map((number) => <li>{number * 2}</li>);
 
-  return(
-    <div className="warning">
-      Warning!
-    </div>
-  )
-}
-
-class Page extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {showWarning: true}
-    this.handleToggleClick = this.handleToggleClick.bind(this)
-  }
-
-  handleToggleClick() {
-    this.setState(state => ({
-      showWarning: !state.showWarning
-    }));
-  }
-
-  render() {
-    return(
-      <div>
-        <WarningBanner warn={this.state.showWarning} />
-        <button onClick={this.handleToggleClick}>
-          {this.state.showWarning ? 'Hide' : 'Show'}
-        </button>
-      </div>
-    );
-  }
+  return <ul>{doubled}</ul>
 }
 
 ReactDOM.render(
