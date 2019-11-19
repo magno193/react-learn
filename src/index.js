@@ -2,76 +2,44 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 //import App from './App';
 
-function UserGreeting() {
-  return <h1>Welcome back!</h1>
-}
-
-function GuestGreeting() {
-  return <h1>Please, log in.</h1>
-}
-
-function Greeting(props) {
-  const isLoggedIn = props.isLoggedIn;
-
-  if (isLoggedIn) {
-    return <UserGreeting />
+function WarningBanner(props) {
+  if (!props.warn) {
+    return null
   }
-  return <GuestGreeting />
+
+  return(
+    <div className="warning">
+      Warning!
+    </div>
+  )
 }
 
-class LoginControl extends React.Component {
+class Page extends React.Component {
   constructor(props) {
     super(props);
-    this.handleLoginClick = this.handleLoginClick.bind(this);
-    this.handleLogoutClick = this.handleLogoutClick.bind(this);
-
-    this.state = {isLoggedIn: false}
+    this.state = {showWarning: true}
+    this.handleToggleClick = this.handleToggleClick.bind(this)
   }
 
-  handleLoginClick() {
-    this.setState({isLoggedIn: true})
-  }
-
-  handleLogoutClick() {
-    this.setState({isLoggedIn: false})
+  handleToggleClick() {
+    this.setState(state => ({
+      showWarning: !state.showWarning
+    }));
   }
 
   render() {
-    const isLoggedIn = this.state.isLoggedIn;
-
     return(
       <div>
-        <Greeting isLoggedIn={isLoggedIn} />
-
-        {isLoggedIn ? 
-          <LogoutButton onClick={this.handleLogoutClick} /> 
-        : 
-          <LoginButton onClick={this.handleLoginClick} />
-        }
+        <WarningBanner warn={this.state.showWarning} />
+        <button onClick={this.handleToggleClick}>
+          {this.state.showWarning ? 'Hide' : 'Show'}
+        </button>
       </div>
-    )
+    );
   }
 }
 
-function LoginButton(props) {
-  return(
-    <button onClick={props.onClick}>
-      Login
-    </button>
-  );
-}
-
-function LogoutButton(props) {
-  return(
-    <button onClick={props.onClick}>
-      Logout
-    </button>
-  );
-}
-
-// renderiza um valor diferente dependendo do valor
-// da prop isLoggedIn
 ReactDOM.render(
-  <LoginControl />,
+  <Page />,
   document.getElementById('root')
 );
