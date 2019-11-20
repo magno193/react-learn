@@ -8,12 +8,11 @@ function ListItem(props) {
 
 function NumbersList(props) {
   const numbers = props.numbers;
-  const listItens = numbers.map((number) =>
-    <ListItem key={number.toString()} item={number}/>
-  );
   return (
     <ul>
-      {listItens}
+      {numbers.map((number) =>
+        <ListItem key={number.toString()} item={number}/>
+      )}
     </ul>
   );
 }
