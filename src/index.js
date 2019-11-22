@@ -2,56 +2,41 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 //import App from './App';
 
-class Reservation extends React.Component {
+function BoilingVerdict(props) {
+  if (props.celcius >= 100) {
+    return <p>A água ferve.</p>
+  }
+  return <p>A água não ferve.</p>
+}
+
+class Calculator extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = {
-      isGoing: true,
-      numberOfGuests: 2
-    }
-
-    this.handleInputChange = this.handleInputChange.bind(this);
+    super(props)
+    this.handleChange = this.handleChange.bind(this);
+    this.state = {temperature: ''};
   }
 
-  handleInputChange(event) {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? 
-      target.checked : target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value
-    })
+  handleChange(e) {
+    this.setState({temperature: e.target.value});
   }
 
-  render(){
-    return(
-      <form>
-        <label>
-          Estão indo:
+  render() {
+    const temperature = this.state.temperature;
+    return (
+      <fieldset>
+        <legend>Informe a temperatura em Celsius:</legend>
         <input
-          name="isGoing"
-          type="checkbox"
-          checked={this.state.isGoing}
-          onChange={this.handleInputChange}
+          value={temperature}
+          onChange={this.handleChange}
         />
-        </label>
-        <br />
-        <label>
-          Número de convidados:
-        <input
-          name="numberOfGuests"
-          type="number"
-          value={this.state.numberOfGuests}
-          onChange={this.handleInputChange}
-        />
-        </label>
-      </form>
+
+        <BoilingVerdict celcius={parseFloat(temperature)} />
+      </fieldset>
     );
   }
 }
 
 ReactDOM.render(
-  <Reservation />,
+  <Calculator />,
   document.getElementById('root')
 );
