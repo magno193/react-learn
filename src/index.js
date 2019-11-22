@@ -2,31 +2,49 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 //import App from './App';
 
-function FancyBorder(props) {
-  return(
-    <div className={
-      'FancyBorder FancyBorder-' +
-      props.color
-    }>
-      {props.children}
+function SplitPane(props) {
+  return (
+    <div className="SplitPane">
+      <div className="SplitPane-left">
+        {props.left}
+      </div>
+      <div className="SplitPane-right">
+        {props.right}
+      </div>
     </div>
   );
 }
 
-function WelcomeDialog() {
+function App() {
+  return (
+    <SplitPane
+      left={
+        <Contacts />
+      }
+      right={
+        <Chat />
+      }
+    />
+  );
+}
+
+function Contacts() {
   return(
-    <FancyBorder color="blue">
-      <h1 className="Dialog-title">
-        Bem-Vindo
-      </h1>
-      <p className="Dialog-message">
-        Obrigado por visitar nossa espaçonave!
-      </p>
-    </FancyBorder>
+    <div>
+      <h1>Contatos</h1>
+    </div>
+  );
+}
+
+function Chat() {
+  return(
+    <div>
+      <h1>Chat</h1>
+    </div>
   );
 }
 
 ReactDOM.render(
-  <WelcomeDialog />,
+  <App />,
   document.getElementById('root')
 );
