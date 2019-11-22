@@ -2,64 +2,43 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 //import App from './App';
 
-function FancyBorder(props) {
-  return (
-    <div className={'FancyBorder FancyBorder-' + props.color}>
-      {props.children}
-    </div>
-  );
+/*@function 
+* Contém a totalidade do exemplo
+*/
+function FilterableProductTable(props) {
+  return(<p></p>);
 }
 
-function Dialog(props) {
-  return (
-    <FancyBorder color="blue">
-      <h1 className="Dialog-title">
-        {props.title}
-      </h1>
-      <p className="Dialog-message">
-        {props.message}
-      </p>
-      {props.children}
-    </FancyBorder>
-  );
+/*@function 
+* Recebe todo o input do usuário
+*/
+function SearchBar(props) {
+  
 }
 
-class SignUpDialog extends React.Component {
-  constructor(props){
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSignUp = this.handleSignUp.bind(this);
+/*@function 
+* Exibe e filtra a coleção de dados baseado
+* no input do usuário
+*/
+function ProductTable(props) {
+  
+}
 
-    this.state = {login: ''};
-  }
+/*@function 
+* Exibe um cabeçalho para cada categoria
+*/
+function ProductCategoryRow(props) {
+  
+}
 
-  handleChange(e) {
-    this.setState({login: e.target.value})
-  }
-
-  handleSignUp() {
-    alert(`Bem-vindo a bordo, ${this.state.login}!`)
-  }
-
-  render(){
-    return(
-      <Dialog
-        title="Programa de Exploração de Marte" 
-        message="Como gostaria de ser chamado?"
-      >
-        <input
-          value={this.state.login}
-          onChange={this.handleChange}
-        />
-        <button onClick={this.handleSignUp}>
-          Cadastre-se!
-        </button>
-      </Dialog>
-    );
-  }
+/*@function 
+* Exibe uma linha para cada produto
+*/
+function ProductRow(props) {
+  
 }
 
 ReactDOM.render(
-  <SignUpDialog />,
+  <FilterableProductTable />,
   document.getElementById('root')
 );
