@@ -19,20 +19,47 @@ function Dialog(props) {
       <p className="Dialog-message">
         {props.message}
       </p>
+      {props.children}
     </FancyBorder>
   );
 }
 
-function WelcomeDialog() {
-  return (
-    <Dialog
-      title="Bem-Vindo"
-      message="Obrigado por visitar a nossa espaçonave!"
-    />
-  );
+class SignUpDialog extends React.Component {
+  constructor(props){
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSignUp = this.handleSignUp.bind(this);
+
+    this.state = {login: ''};
+  }
+
+  handleChange(e) {
+    this.setState({login: e.target.value})
+  }
+
+  handleSignUp() {
+    alert(`Bem-vindo a bordo, ${this.state.login}!`)
+  }
+
+  render(){
+    return(
+      <Dialog
+        title="Programa de Exploração de Marte" 
+        message="Como gostaria de ser chamado?"
+      >
+        <input
+          value={this.state.login}
+          onChange={this.handleChange}
+        />
+        <button onClick={this.handleSignUp}>
+          Cadastre-se!
+        </button>
+      </Dialog>
+    );
+  }
 }
 
 ReactDOM.render(
-  <WelcomeDialog />,
+  <SignUpDialog />,
   document.getElementById('root')
 );
