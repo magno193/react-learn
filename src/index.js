@@ -21,6 +21,21 @@ class FilterableProductTable extends React.Component {
       filterText: '',
       inStockOnly: false
     };
+
+    this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+    this.handleInStockChange = this.handleInStockChange.bind(this);
+  }
+
+  handleFilterTextChange(filterText) {
+    this.setState({
+      filterText: filterText
+    });
+  }
+
+  handleInStockChange(inStockOnly) {
+    this.setState({
+      inStockOnly: inStockOnly
+    });
   }
 
   render(){
@@ -29,6 +44,8 @@ class FilterableProductTable extends React.Component {
         <SearchBar
           filterText={this.state.filterText}
           inStockOnly={this.state.inStockOnly}
+          onFilterTextChange={this.handleFilterTextChange}
+          onInStockChange={this.handleInStockChange}
         />
         <ProductTable
           products={this.props.products}
@@ -44,6 +61,20 @@ class FilterableProductTable extends React.Component {
 * Recebe todo o input do usuário
 */
 class SearchBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+    this.handleInStockChange = this.handleInStockChange.bind(this);
+  }
+
+  handleFilterTextChange(e){
+    this.props.onFilterTextChange(e.target.value);
+  }
+
+  handleInStockChange(e){
+    this.props.onInStockChange(e.target.checked);
+  }
+
   render(){
     const filterText = this.props.filterText;
     const inStockOnly = this.props.inStockOnly;
@@ -95,7 +126,7 @@ class ProductTable extends React.Component {
           />
         );
       }
-      
+
       rows.push(
         <ProductRow
           product={product}
